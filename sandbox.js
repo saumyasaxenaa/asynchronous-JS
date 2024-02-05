@@ -1,28 +1,42 @@
-const getTodos = (callback) => {
-  return new Promise((resolve, reject) => {
-    const request = new XMLHttpRequest();
+// fetch API
 
-    request.addEventListener("readystatechange", () => {
-      if (request.readyState === 4 && request.status === 200) {
-        const data = JSON.parse(request.responseText);
-        resolve(data);
-      } else if (request.readyState === 4) {
-        reject("error getting resource");
-      }
-    });
-
-    request.open("GET", "todos.json");
-    request.send();
-  });
-};
-
-getTodos("tods.json")
+fetch("todos.json")
+  .then((response) => {
+    console.log("resolved", response);
+    return response.json();
+  })
   .then((data) => {
-    console.log("promise resolved: ", data);
+    console.log(data);
   })
   .catch((err) => {
-    console.log("promise rejected: ", err);
+    console.log("rejected", err);
   });
+
+// const getTodos = (callback) => {
+//   return new Promise((resolve, reject) => {
+//     const request = new XMLHttpRequest();
+
+//     request.addEventListener("readystatechange", () => {
+//       if (request.readyState === 4 && request.status === 200) {
+//         const data = JSON.parse(request.responseText);
+//         resolve(data);
+//       } else if (request.readyState === 4) {
+//         reject("error getting resource");
+//       }
+//     });
+
+//     request.open("GET", "todos.json");
+//     request.send();
+//   });
+// };
+
+// getTodos("tods.json")
+//   .then((data) => {
+//     console.log("promise resolved: ", data);
+//   })
+//   .catch((err) => {
+//     console.log("promise rejected: ", err);
+//   });
 
 //promise example
 
