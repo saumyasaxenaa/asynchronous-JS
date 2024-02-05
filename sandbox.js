@@ -1,16 +1,29 @@
+// async & await
+
+const getTodos = async () => {
+  // always returns a promise
+  const response = await fetch("todos.json");
+  const data = await response.json();
+  return data;
+};
+
+getTodos().then((data) => {
+  console.log("resolved: ", data);
+});
+
 // fetch API
 
-fetch("todos.json")
-  .then((response) => {
-    console.log("resolved", response);
-    return response.json();
-  })
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((err) => {
-    console.log("rejected", err);
-  });
+// fetch("todos.json")
+//   .then((response) => {
+//     console.log("resolved", response);
+//     return response.json();
+//   })
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((err) => {
+//     console.log("rejected", err);
+//   });
 
 // const getTodos = (callback) => {
 //   return new Promise((resolve, reject) => {
