@@ -3,13 +3,22 @@
 const getTodos = async () => {
   // always returns a promise
   const response = await fetch("todos.json");
+
+  if (response.status !== 200) {
+    throw new Error("cannot fetch data");
+  }
+
   const data = await response.json();
   return data;
 };
 
-getTodos().then((data) => {
-  console.log("resolved: ", data);
-});
+getTodos()
+  .then((data) => {
+    console.log("resolved: ", data);
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
 
 // fetch API
 
